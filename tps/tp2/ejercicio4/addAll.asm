@@ -1,17 +1,25 @@
 section .text
   GLOBAL _start
+  EXTERN num2str
+  EXTERN puts
+  EXTERN exit
 
 _start:
   push ebp
   mov ebp, esp
   
-  push 15
+  push 1250
   call _addall
+
+  mov byte [buffer + 31], 0
   push eax
-  mov eax, 4
-  mov ebx, 1
-  mov ecx, [esp]
-  mov edx, 
+  push buffer
+  call num2str
+
+  mov ebx, buffer
+  call puts
+  call exit
+  
   
 _addall:
   push ebp
@@ -29,6 +37,5 @@ _addall:
   pop ebp
   ret
 
-section .data
-
 section .bss
+  buffer resb 32

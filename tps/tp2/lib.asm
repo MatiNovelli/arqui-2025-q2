@@ -1,8 +1,10 @@
 GLOBAL print
+GLOBAL puts
+GLOBAL write
 GLOBAL exit
 GLOBAL numtostr
-GLOBAL write
 GLOBAL num2str
+
 
 section .text
 
@@ -54,6 +56,22 @@ print:
 	
 	popad 		; restauro los registros
 	ret	
+
+
+;===============================================================================
+; puts - imprime una cadena en la salida estandar.
+; Agrega un salto de linea al final.
+;===============================================================================
+; Argumentos:
+;	ebx: cadena a imprimer en pantalla, terminada con 0
+;===============================================================================
+puts:
+	pushad
+	call print
+	mov ebx, new_line
+	call print
+	popad
+	ret
 
 	
 ;===============================================================================
@@ -137,8 +155,12 @@ numtostr:
 ; num2str - Convierte un número en string decimal terminado en 0
 ;===============================================================================
 ; Argumentos:
-;   [ebp+8]  -> puntero a buffer (zona de memoria donde guardar el string)
-;   [ebp+12] -> número a convertir (entero positivo)
+;   Por stack en orden:
+;   Número a convertir (entero positivo)
+;   Puntero a buffer (zona de memoria donde guardar el string)
+; 
+; Retorno:
+;   El numero en string en la zona de memoria pasada
 ;===============================================================================
 
 num2str:
@@ -175,3 +197,7 @@ num2str:
     mov esp, ebp ;desarmo el stackframe
     pop ebp
 	ret
+
+
+section .data
+	new_line db 10,0
