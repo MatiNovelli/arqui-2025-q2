@@ -4,6 +4,10 @@ GLOBAL write
 GLOBAL exit
 GLOBAL numtostr
 GLOBAL num2str
+GLOBAL str2num
+
+section .data
+	new_line db 10,0
 
 
 section .text
@@ -199,5 +203,42 @@ num2str:
 	ret
 
 
-section .data
-	new_line db 10,0
+;===============================================================================
+; str2num - Convierte un string terminado en 0, en un número decimal
+;===============================================================================
+; Argumentos:
+;   ebx: String de un número, terminado en 0
+; 
+; Retorno:
+;   ebx: El string convertido a número
+;===============================================================================
+str2num:
+    push ebp
+    mov ebp, esp
+
+    push eax ;Backup de los registros que voy a usar
+    push edx
+
+    xor eax, eax        ; acumulador = 0
+
+	.CICLO:
+		mov dl, byte [ebx]   ; leo un carácter
+		cmp dl, 0              ; fin del string?
+		je .FIN
+		sub dl, '0'            ; convierto de ascii a número
+
+		imul eax, eax, 10       ; acum = acum * 10
+		add  eax, edx           ; acum = acum + dígito
+
+		inc ebx                 ; siguiente carácter
+		jmp .CICLO
+
+	.FIN:
+		mov ebx, eax            ; retorno en ebx
+
+		pop edx
+		pop eax
+
+		mov esp, ebp
+		pop ebp
+		ret

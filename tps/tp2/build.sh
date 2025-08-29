@@ -22,7 +22,7 @@ BASENAME=$(basename "$SRC" .asm)
 # Nombre de salida (por defecto igual al basename)
 OUT="${2:-$BASENAME}"
 
-# Ruta completa al archivo lib.asm (asumiendo que está en el directorio raíz)
+# Ruta completa al archivo lib.asm
 LIB_ASM="lib.asm"
 if [ ! -f "$LIB_ASM" ]; then
     # Si no está en el directorio actual, buscar en el directorio padre
