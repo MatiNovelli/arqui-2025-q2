@@ -8,7 +8,7 @@ _start:
   push ebp
   mov ebp, esp
   
-  push 1250
+  push 5
   call _addall
 
   mov byte [buffer + 31], 0

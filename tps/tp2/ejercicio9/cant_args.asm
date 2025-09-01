@@ -22,7 +22,7 @@ _start:
     ; 0xBFFFF008 → argv[1] ; hola
     ; 0xBFFFF00C → argv[2] ; mundo
     ; 0xBFFFF010 → NULL
-
+    
 
     mov eax, [ebp+4]      ; eax = argc (entero)
     mov ebx, buffer     ; ebx = dirección del buffer destino

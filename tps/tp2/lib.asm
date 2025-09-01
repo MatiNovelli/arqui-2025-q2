@@ -181,12 +181,14 @@ num2str:
 
     .CICLO:
 	xor edx, edx ;Limpio el registro edx porque lo voy a usar
-	cmp eax, 0
+	div esi ; eax /= 10 
+	add edx, '0' ; transformo el numero en string
+	push edx 
+
+	cmp eax, 0 ; si eax es 0 -> ya termine de dividir el numero y tengo todos sus digitos en el stack
 	je .GETNUM
-	div esi
-	add edx, '0'
-	push edx
-	jmp .CICLO
+	
+	jmp .CICLO ; si no sigo el ciclo
 
     .GETNUM:
     pop eax
