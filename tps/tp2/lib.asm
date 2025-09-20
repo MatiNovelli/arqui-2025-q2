@@ -18,7 +18,7 @@ section .text
 ;===============================================================================
 ; Argumentos (En orden de pusheo):
 ;	stack: largo de la cadena
-;	stack: cadena a imprimer en pantalla
+;	stack: cadena a imprimir en pantalla
 ;===============================================================================
 write:
 	push ebp 	;armo el stack frame

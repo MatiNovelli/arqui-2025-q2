@@ -7,7 +7,7 @@ _start:
     push ebp
     mov ebp, esp
 
-    mov eax, 4
+    mov eax, 4  
 
     .CICLO:
     add eax, 4
