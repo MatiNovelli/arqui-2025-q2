@@ -5,6 +5,7 @@ GLOBAL exit
 GLOBAL numtostr
 GLOBAL num2str
 GLOBAL str2num
+GLOBAL printNewLine
 
 section .data
 	new_line db 10,0
@@ -77,6 +78,20 @@ puts:
 	popad
 	ret
 
+;===============================================================================
+; imprime un \n en pantalla
+;===============================================================================
+printNewLine:
+	pushad
+
+	mov ecx, new_line 	    ; Puntero a la cadena
+	mov edx, 1				; Largo de la cadena 
+	mov ebx, 1		    	; FileDescriptor (STDOUT)
+	mov eax, 4		    	; ID del Syscall WRITE
+	int 80h		        	; Ejecucion de la llamada
+
+	popad
+	ret
 	
 ;===============================================================================
 ; exit - termina el programa
