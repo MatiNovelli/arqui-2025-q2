@@ -28,11 +28,11 @@ _start:
     mov ebx, cant_arg_msg ; Imprimo el mensaje de cantidad de argumentos
     call print
 
-    mov ebx, buffer ; Imprimo la cantidad de argumentos
+    mov ebx, buffer     ; Imprimo la cantidad de argumentos
     call puts
     
     .CICLO:
-    cmp eax, ecx ; Cuando index es igual a la cantidad de argumentos.
+    cmp eax, ecx        ; Cuando index es igual a la cantidad de argumentos.
     je .FIN             ; Ya termine de imprimir todos los argumentos
     
     mov ebx, argv_msg_1 ; Imprimo la primera parte de el mensaje de argv
@@ -42,7 +42,7 @@ _start:
     push buffer
     call num2str
 
-    mov ebx, buffer ; Printeo el numero del argumento
+    mov ebx, buffer     ; Printeo el numero del argumento
     call print
 
     mov ebx, argv_msg_2 ; Prineto la ultima parte del argumento
@@ -50,8 +50,8 @@ _start:
 
     mov edx, [ebp+8 + ecx*4]
 
-    mov ebx, edx ; Agarro el argumento numero n=index_argv
-    call puts ; Printeo el argumento
+    mov ebx, edx        ; Agarro el argumento numero n=index_argv
+    call puts           ; Printeo el argumento
 
     inc ecx
     jmp .CICLO

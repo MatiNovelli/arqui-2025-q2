@@ -17,12 +17,12 @@ section .text
 ;               [ envp[0] ]           ; ebp + 24
 ;               ...
 
-    mov ebx, ebp
-    add ebx, 8
+    lea ebx, [ebp+8]  ;ebx = ebp + 8
 
     push ebx ;Argv (Dirrecion de argv[0])
     push dword [ebp+4] ;Argc 
     call main
+
     add esp, 2*4 ;Restauro el esp
 
     .END:
